@@ -32,7 +32,7 @@
             <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
             <script>
                 function InitChart() {
-                    var data1 = [{
+                    var data = [{
                         "sale": "202",
                         "year": "2000"
                     }, {
@@ -121,7 +121,7 @@
                         .interpolate("basis");
 
                     vis.append('svg:path')
-                        .attr('d', lineGen(data1))
+                        .attr('d', lineGen(data))
                         .attr('stroke', 'green')
                         .attr('stroke-width', 2)
                         .attr('fill', 'none');
