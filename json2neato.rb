@@ -8,14 +8,20 @@ parsed = JSON.parse(json)
 
 output = File.open( 'graph.dot','w')
 output << "graph G {\n"
-#output << "splines = true\n"
-output << "fontsize = 8\n"
-parsed['characters'].each do |c|
-  if c['faction'] == 'House Stark'
-    #puts "#{c['faction']} -- #{c['name']}"
-    output << "\"House Stark\" -- \"#{c['name']}\""
+output << "splines=true;\n"
+output << "orientation=portrait;\n"
+output << "overlap=false;\n"
+output << "fontsize=12;\n"
+output << "ratio=\"fill\";\n"
+output << "size=\"8.3,11.7!\";\n"
+output << "margin=0;\n"
+
+parsed['relations'].each do |r|
+  if r['type'] == 'was killed by'
+    output << "\"#{r['target']}\" -- \"#{r['source']}\" [dir=forward, style=bold, decorate=true];"
     output << "\n"
   end
 end
 output << '}'
+
 output.close
